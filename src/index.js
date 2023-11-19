@@ -1,7 +1,8 @@
 import { BrowserProvider } from 'ethers';
 import { SiweMessage } from 'siwe';
+import { env } from './env.js'
 
-const domain = window.location.host;
+const domain = window.location.host; 
 const origin = window.location.origin;
 const provider = new BrowserProvider(window.ethereum);
 
@@ -18,9 +19,9 @@ function createSiweMessage (address, statement) {
 }
 
 function connectWallet () {
-  console.log("connecting wallet");
-//   provider.send('eth_requestAccounts', [])
-//     .catch(() => console.log('user rejected request'));
+  console.log("Connecting your wallet...", env.BASE_URL);
+  provider.send('eth_requestAccounts', [])
+    .catch(() => console.log('user rejected request'));
 }
 
 async function signInWithEthereum () {
